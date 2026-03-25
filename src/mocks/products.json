@@ -1,0 +1,408 @@
+[
+  {
+    "id": "7e6bc49d-d703-4378-9b00-625db06771f3",
+    "url": "https://zhk-po-per-chuvashskiy-rostov-i.cian.ru/",
+    "name": "ЖК «Клубный дом Проявление»",
+    "price": "12500000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/proyavlenie/1.jpg",
+      "https://example.com/proyavlenie/2.jpg"
+    ],
+    "description": "Клубный дом бизнес‑класса с закрытой территорией, видеонаблюдением и подземным паркингом.",
+    "available": true,
+    "characteristics": {
+      "class": "Бизнес",
+      "floors": 12,
+      "deadline": "2025",
+      "developer": "ООО «Проявление»",
+      "material": "Монолит",
+      "parking": "Подземный"
+    },
+    "oldPrice": "13200000"
+  },
+  {
+    "id": "24a9ba56-0936-43b6-a753-28075f76a855",
+    "url": "https://zhk-malina-park-rostov-i.cian.ru/",
+    "name": "ЖК «Малина парк»",
+    "price": "8200000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/malina/1.jpg"
+    ],
+    "description": "Современный жилой комплекс комфорт‑класса в зелёном районе города.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 18,
+      "deadline": "2024",
+      "developer": "ГК «Малина»",
+      "material": "Кирпич‑монолит",
+      "parking": "Наземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "3f10bce8-544e-47f9-9307-0510eec9e0bd",
+    "url": "https://zhk-kultura-rostov-i.cian.ru/",
+    "name": "ЖК «Культура»",
+    "price": "9900000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/kultura/1.jpg",
+      "https://example.com/kultura/2.jpg",
+      "https://example.com/kultura/3.jpg"
+    ],
+    "description": "ЖК комфорт+ с благоустроенными дворами, детскими площадками и развитой инфраструктурой.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт+",
+      "floors": 20,
+      "deadline": "2026",
+      "developer": "ООО «Культура Девелопмент»",
+      "material": "Монолит",
+      "parking": "Подземный и гостевой"
+    },
+    "oldPrice": "10400000"
+  },
+  {
+    "id": "47f7e95f-c2a4-48f3-a450-adac1ce34fd4",
+    "url": "https://zhk-botanika-rostov-i.cian.ru/",
+    "name": "ЖК «Botanika»",
+    "price": "7600000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/botanika/1.jpg"
+    ],
+    "description": "Экологичный жилой комплекс рядом с парковой зоной.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 16,
+      "deadline": "2025",
+      "developer": "Botanika Group",
+      "material": "Монолит",
+      "parking": "Гостевой"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "9b48bfc5-ae98-4d2d-b92d-5e343c2daf42",
+    "url": "https://zhk-sezony-rostov-i.cian.ru/",
+    "name": "ЖК «Сезоны»",
+    "price": "6900000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/sezony/1.jpg",
+      "https://example.com/sezony/2.jpg"
+    ],
+    "description": "ЖК с концепцией «четыре сезона» и дизайнерскими входными группами.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 19,
+      "deadline": "2024",
+      "developer": "Сезоны Девелопмент",
+      "material": "Кирпич‑монолит",
+      "parking": "Наземный"
+    },
+    "oldPrice": "7200000"
+  },
+  {
+    "id": "eb40276d-cf59-44fc-ae63-bfbfd0cce846",
+    "url": "https://zhk-kurortnyy-kvartal-rivera-rostov-i.cian.ru/",
+    "name": "ЖК «Курортный квартал Ривьера»",
+    "price": "11500000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/riviera/1.jpg"
+    ],
+    "description": "ЖК премиум‑класса с видом на реку и собственной набережной.",
+    "available": true,
+    "characteristics": {
+      "class": "Премиум",
+      "floors": 22,
+      "deadline": "2026",
+      "developer": "Ривьера Девелопмент",
+      "material": "Монолит",
+      "parking": "Подземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "3c610c31-8d03-4f74-b97a-13912fb3aca4",
+    "url": "https://zhk-dom-rezidenciya-sobranie-rostov-i.cian.ru/",
+    "name": "ЖК «Дом‑резиденция Собрание»",
+    "price": "14800000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/sobranie/1.jpg",
+      "https://example.com/sobranie/2.jpg"
+    ],
+    "description": "Элитный жилой комплекс с закрытой территорией и премиальной отделкой мест общего пользования.",
+    "available": true,
+    "characteristics": {
+      "class": "Элитный",
+      "floors": 14,
+      "deadline": "2025",
+      "developer": "Собрание Девелопмент",
+      "material": "Монолит",
+      "parking": "Подземный"
+    },
+    "oldPrice": "15500000"
+  },
+  {
+    "id": "0e9f2b82-8464-4831-8bf9-fc9f95e36a58",
+    "url": "https://zhk-grinsayd-rostov-i.cian.ru/",
+    "name": "ЖК «Столицыно»",
+    "price": "7200000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/stolicyno/1.jpg"
+    ],
+    "description": "ЖК комфорт‑класса с собственной школой и детским садом.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 17,
+      "deadline": "2024",
+      "developer": "Столицыно Групп",
+      "material": "Кирпич‑монолит",
+      "parking": "Наземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "9ae2850c-cf17-4988-a6b1-bd3499205d12",
+    "url": "https://zhk-academia-rostov-i.cian.ru/",
+    "name": "ЖК «ACADEMIA»",
+    "price": "9800000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/academia/1.jpg",
+      "https://example.com/academia/2.jpg"
+    ],
+    "description": "Современный жилой комплекс рядом с университетским кампусом.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт+",
+      "floors": 21,
+      "deadline": "2025",
+      "developer": "Academia Group",
+      "material": "Монолит",
+      "parking": "Подземный"
+    },
+    "oldPrice": "10200000"
+  },
+  {
+    "id": "5442f412-798e-4abc-8431-6d4b5ea63049",
+    "url": "https://zhk-luna-rostov-i.cian.ru/",
+    "name": "ЖК «Gray»",
+    "price": "8700000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/gray/1.jpg"
+    ],
+    "description": "ЖК в современном минималистичном стиле с панорамным остеклением.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт+",
+      "floors": 19,
+      "deadline": "2024",
+      "developer": "Gray Development",
+      "material": "Монолит",
+      "parking": "Гостевой"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "cc5c80b2-9a47-441d-931f-09aaef7455b6",
+    "url": "https://zhk-palmira-20-rostov-i.cian.ru/",
+    "name": "ЖК «Пальмира 2.0»",
+    "price": "9100000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/palmira/1.jpg"
+    ],
+    "description": "Современный комплекс с дизайнерскими входными группами и благоустроенной территорией.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт+",
+      "floors": 20,
+      "deadline": "2026",
+      "developer": "Palmira Group",
+      "material": "Монолит",
+      "parking": "Подземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "0925063a-d67f-4d58-a198-f3d2d69b0fa1",
+    "url": "https://zhk-oktyabr-park-rostov-i.cian.ru/",
+    "name": "ЖК «Октябрь Парк»",
+    "price": "7800000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/oktyabr/1.jpg"
+    ],
+    "description": "ЖК рядом с крупным парком и развитой инфраструктурой.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 18,
+      "deadline": "2024",
+      "developer": "Октябрь Девелопмент",
+      "material": "Кирпич‑монолит",
+      "parking": "Наземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "4c562002-da5b-47f6-8178-7554c3b6e921",
+    "url": "https://zhk-manhetten-20-rostov-i.cian.ru/",
+    "name": "ЖК «Манхэттен 2.0»",
+    "price": "11200000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/manhattan/1.jpg",
+      "https://example.com/manhattan/2.jpg"
+    ],
+    "description": "ЖК в стиле американских небоскрёбов с панорамными видами.",
+    "available": true,
+    "characteristics": {
+      "class": "Бизнес",
+      "floors": 24,
+      "deadline": "2026",
+      "developer": "Manhattan Group",
+      "material": "Монолит",
+      "parking": "Подземный"
+    },
+    "oldPrice": "11800000"
+  },
+  {
+    "id": "60e73103-1340-49c9-ac5f-c5ded29b11e5",
+    "url": "https://zhk-stolicyno-rostov-i.cian.ru/",
+    "name": "ЖК «Столицыно»",
+    "price": "7300000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/stolicyno2/1.jpg"
+    ],
+    "description": "ЖК комфорт‑класса с собственной инфраструктурой.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 17,
+      "deadline": "2024",
+      "developer": "Столицыно Групп",
+      "material": "Кирпич‑монолит",
+      "parking": "Наземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "1748c0c2-4cde-4a08-9e47-02b25a9fa043",
+    "url": "https://zhk-panorama-na-teatralnom-rostov-i.cian.ru/",
+    "name": "ЖК «Панорама на Театральном»",
+    "price": "13500000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/panorama/1.jpg"
+    ],
+    "description": "Премиальный ЖК с панорамными видами на центр города.",
+    "available": true,
+    "characteristics": {
+      "class": "Премиум",
+      "floors": 23,
+      "deadline": "2025",
+      "developer": "Панорама Девелопмент",
+      "material": "Монолит",
+      "parking": "Подземный"
+    },
+    "oldPrice": "14200000"
+  },
+  {
+    "id": "e08a2ab1-5fc6-45f9-ac0e-8febc35cd54a",
+    "url": "https://zhk-gray-rostov-i.cian.ru/",
+    "name": "ЖК «Gray»",
+    "price": "8600000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/gray2/1.jpg"
+    ],
+    "description": "Современный ЖК в стиле минимализм.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт+",
+      "floors": 19,
+      "deadline": "2024",
+      "developer": "Gray Development",
+      "material": "Монолит",
+      "parking": "Гостевой"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "4d89a8ec-3863-4a73-868b-41bf9ef29ed2",
+    "url": "https://zhk-temernickiy-rostov-i.cian.ru/",
+    "name": "ЖК «Соседи»",
+    "price": "6500000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/sosedi/1.jpg"
+    ],
+    "description": "Доступный ЖК с удобной транспортной развязкой.",
+    "available": true,
+    "characteristics": {
+      "class": "Эконом",
+      "floors": 14,
+      "deadline": "2024",
+      "developer": "Соседи Строй",
+      "material": "Панель",
+      "parking": "Наземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "47b927bb-885b-4253-9de3-f05903bda5a8",
+    "url": "https://zhk-mechta-rostov-i.cian.ru/",
+    "name": "ЖК «Мечта»",
+    "price": "7100000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/mechta/1.jpg"
+    ],
+    "description": "ЖК с просторными дворами и детскими площадками.",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 16,
+      "deadline": "2025",
+      "developer": "Мечта Девелопмент",
+      "material": "Кирпич‑монолит",
+      "parking": "Наземный"
+    },
+    "oldPrice": null
+  },
+  {
+    "id": "0e8d1a9a-4211-4ba8-9f3d-aad8cbc0fa93",
+    "url": "https://zhk-sostoyanie-rostov-i.cian.ru/",
+    "name": "ЖК «Состояние»",
+    "price": "9200000",
+    "currencyId": "RUB",
+    "picture": [
+      "https://example.com/sostoyanie/1.jpg"
+    ],
+    "description": "ЖК комфорт‑класса с дизайнерскими холлами",
+    "available": true,
+    "characteristics": {
+      "class": "Комфорт",
+      "floors": 16,
+      "deadline": "2025",
+      "developer": "Мечта Девелопмент",
+      "material": "Кирпич‑монолит",
+      "parking": "Наземный"
+    },
+    "oldPrice": null
+  }
+]
