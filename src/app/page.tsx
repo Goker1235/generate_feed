@@ -4,7 +4,7 @@ import { useElementPicker } from "@/hooks/useElementPicker";
 import { HighlightBox } from "@/components/HighlightBox";
 
 export default function Home() {
-  const { isActive, setIsActive, rect, hoverClass, selected } =
+  const { isActive, setIsActive, rect, hoverClass, selected, parsingConfig } =
     useElementPicker();
 
   const handleDownloadFeed = async () => {
@@ -23,6 +23,19 @@ export default function Home() {
     window.URL.revokeObjectURL(url);
   };
 
+  const handleParse = async () => {
+  const res = await fetch("/api/parse-playwright", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      url: "https://example.com",
+      selectors: parsingConfig // объект с container/title/price/image
+    }),
+  });
+
+  const data = await res.json();
+  console.log(data);
+};
   return (
     <main style={{ padding: 40 }}>
       <button
@@ -69,6 +82,17 @@ export default function Home() {
         }}
       >
         Скачать фид
+      </button>
+       <button
+        onClick={handleParse}
+        style={{
+          padding: "10px 16px",
+          fontSize: 16,
+          cursor: "pointer",
+          marginLeft: 16,
+        }}
+      >
+        Парсинг
       </button>
     </main>
   );
