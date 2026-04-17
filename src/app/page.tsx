@@ -1,99 +1,77 @@
 "use client";
 
-import { useElementPicker } from "@/hooks/useElementPicker";
+import { Controls } from "@/components/Controls";
 import { HighlightBox } from "@/components/HighlightBox";
+import { PreviewFrame } from "@/components/PreviewFrame";
+import { SelectedInfo } from "@/components/SelectedInfo";
+import { UrlPreview } from "@/components/UrlPreview";
+import { useElementPicker } from "@/hooks/useElementPicker";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { isActive, setIsActive, rect, hoverClass, selected, parsingConfig } =
-    useElementPicker();
+  const [items, setItems] = useState<any[]>([]);
+  const [pendingElement, setPendingElement] = useState<any>(null);
+  const [name, setName] = useState("");
 
-  const handleDownloadFeed = async () => {
-    const res = await fetch("/api/feed");
-    if (!res.ok) {
-      alert("Ошибка при генерации фида");
-      return;
+  const handleOpenSite = (url: string) => {
+    if (!url.startsWith("http")) {
+      url = "https://" + url;
     }
 
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "feed.xml";
-    a.click();
-    window.URL.revokeObjectURL(url);
+    window.open(url, "_blank");
   };
 
-  const handleParse = async () => {
-  const res = await fetch("/api/parse-playwright", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      url: "https://example.com",
-      selectors: parsingConfig // объект с container/title/price/image
-    }),
-  });
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch("/api/selector");
+        const data = await res.json();
 
-  const data = await res.json();
-  console.log(data);
-};
+        if (data?.selector) { 
+          setPendingElement(data);
+        }
+      } catch (e) {}
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main style={{ padding: 40 }}>
-      <button
-        onClick={() => setIsActive(!isActive)}
-        style={{ padding: "10px 16px", fontSize: 16, cursor: "pointer" }}
-      >
-        {isActive ? "Отменить выбор" : "Выбрать элемент"}
-      </button>
+      <UrlPreview onOpen={handleOpenSite} loading={false} />
 
-      <div style={{ marginTop: 40, border: "1px solid #ccc", padding: 20 }}>
-        <h2 className="title">Заголовок блока</h2>
-        <p className="description">
-          Демонстрационный текст для тестирования наведения.
-        </p>
-
-        <div
-          className="card product-card"
-          style={{ padding: 20, marginTop: 15, background: "#f5f5f5" }}
-        >
-          <span className="product-title text-black">Название товара</span>
-          <p className="product-price text-black">Цена: 1999₽</p>
-        </div>
-      </div>
-
-      <div style={{ marginTop: 20 }}>
-        {selected && (
+      {pendingElement && (
+        <div style={{ marginTop: 20 }}>
           <div>
-            <strong>Выбранный элемент:</strong>
-            <div>tag: {selected.tag}</div>
-            <div>class: {selected.className}</div>
-            <div>id: {selected.id}</div>
+            <strong>Выбран элемент:</strong> {pendingElement.selector}
           </div>
-        )}
-      </div>
 
-      <HighlightBox rect={rect} className={hoverClass} />
-      <button
-        onClick={handleDownloadFeed}
-        style={{
-          padding: "10px 16px",
-          fontSize: 16,
-          cursor: "pointer",
-          marginLeft: 16,
-        }}
-      >
-        Скачать фид
-      </button>
-       <button
-        onClick={handleParse}
-        style={{
-          padding: "10px 16px",
-          fontSize: 16,
-          cursor: "pointer",
-          marginLeft: 16,
-        }}
-      >
-        Парсинг
-      </button>
+          <input
+            placeholder="Введите имя"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
+          <button
+            onClick={() => {
+              setItems((prev) => [
+                ...prev,
+                {
+                  name,
+                  selector: pendingElement.selector,
+                },
+              ]);
+
+              setName("");
+              setPendingElement(null);
+            }}
+          >
+            Сохранить
+          </button>
+        </div>
+      )}
+
+      <SelectedInfo items={items} />
     </main>
   );
 }
