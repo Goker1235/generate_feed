@@ -1,39 +1,77 @@
-import { NextRequest, NextResponse } from "next/server";
 import { chromium } from "playwright";
 
-export async function POST(req: NextRequest) {
-  try {
-    const { url, selectors } = await req.json() as {
-      url: string;
-      selectors: {
-        container: string;
-        title: string;
-        price: string;
-        image: string;
+export async function POST(req: Request) {
+  const { url, selectors } = await req.json();
+
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
+
+  await page.goto(url, { waitUntil: "networkidle" });
+
+  // 👇 прокрутка страницы (очень важно для каталогов)
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let totalHeight = 0;
+      const distance = 500;
+
+      const timer = setInterval(() => {
+        window.scrollBy(0, distance);
+        totalHeight += distance;
+
+        if (totalHeight >= document.body.scrollHeight) {
+          clearInterval(timer);
+          resolve(true);
+        }
+      }, 300);
+    });
+  });
+
+  // пауза после скролла
+  await page.waitForTimeout(2000);
+
+  await page.waitForSelector(selectors.container, {
+    timeout: 15000,
+  });
+
+  const data = await page.evaluate((selectors) => {
+    const items: any[] = [];
+
+    const containers = document.querySelectorAll(selectors.container || "body");
+
+    containers.forEach((el) => {
+      const item: any = {};
+
+      const get = (sel: string, attr?: string) => {
+        const node = el.querySelector(sel);
+        if (!node) return "";
+
+        return attr
+          ? node.getAttribute(attr) || ""
+          : node.textContent?.trim() || "";
       };
-    };
 
-    // Локальный Chromium
-    const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
-    const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle" });
+      Object.entries(selectors).forEach(([key, selector]) => {
+        if (key === "container") return;
 
-    const data = await page.$$eval(
-      selectors.container,
-      (elements, selectors) =>
-        elements.map(el => ({
-          title: el.querySelector(selectors.title)?.textContent?.trim() || "",
-          price: el.querySelector(selectors.price)?.textContent?.trim() || "",
-          image: el.querySelector(selectors.image)?.getAttribute("src") || ""
-        })),
-      selectors
-    );
+        if (key.toLowerCase().includes("image") || key.includes("картинка")) {
+          item[key] =
+            get(selector as string, "src") ||
+            get(selector as string, "data-src") ||
+            get(selector as string, "srcset");
+        } else {
+          item[key] = get(selector as string);
+        }
+      });
 
-    await browser.close();
+      if (Object.values(item).some((v) => v)) {
+        items.push(item);
+      }
+    });
 
-    return NextResponse.json(data);
-  } catch (err: any) {
-    console.error("Playwright error:", err);
-    return NextResponse.json({ error: err.message || "Unknown error" }, { status: 500 });
-  }
+    return items;
+  }, selectors);
+
+  await browser.close();
+
+  return Response.json(data);
 }

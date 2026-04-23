@@ -1,13 +1,11 @@
-import { useState } from "react";
-
 interface Props {
-  onOpen: (url: string) => void;
+  url: string;
+  setUrl: (v: string) => void;
+  onOpen: () => void;
   loading: boolean;
 }
 
-export const UrlPreview = ({ onOpen, loading }: Props) => {
-  const [url, setUrl] = useState("");
-
+export const UrlPreview = ({ url, setUrl, onOpen, loading }: Props) => {
   return (
     <div style={{ marginBottom: "20px" }}>
       <input
@@ -21,7 +19,7 @@ export const UrlPreview = ({ onOpen, loading }: Props) => {
           marginRight: "10px",
         }}
       />
-      <button onClick={() => onOpen(url)} disabled={loading}>
+      <button onClick={onOpen} disabled={loading}>
         {loading ? "Opening..." : "Open site"}
       </button>
     </div>

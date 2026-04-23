@@ -15,23 +15,52 @@ export const useElementPicker = () => {
     image?: string;
   }>({});
 
+  const getSelector = (el: HTMLElement): string => {
+    if (el.id) return `#${el.id}`;
+    const path: string[] = [];
+
+    while (el.parentElement) {
+      let selector = el.tagName.toLowerCase();
+
+      if (el.className) {
+        const classes = el.className.split(" ").filter(Boolean).join(".");
+        selector += `.${classes}`;
+      }
+
+      path.unshift(selector);
+      el = el.parentElement;
+    }
+
+    return path.join(" > ");
+  };
+
+  const findContainer = (el: HTMLElement): string => {
+  let current: HTMLElement | null = el;
+
+  while (current && current !== document.body) {
+    const parent = current.parentElement;
+    if (!parent) break;
+
+    const children = parent.children;
+
+    if (children.length > 2) {
+      const same = Array.from(children).filter(
+        (child) => child.tagName === current.tagName
+      );
+
+      if (same.length > 2) {
+        return getSelector(parent);
+      }
+    }
+
+    current = parent;
+  }
+
+  return "body";
+};
+
   useEffect(() => {
     if (!isActive) return;
-
-    const getSelector = (el: HTMLElement): string => {
-      if (el.id) return `#${el.id}`;
-      const path: string[] = [];
-      while (el.parentElement) {
-        let selector = el.tagName.toLowerCase();
-        if (el.className) {
-          const classes = el.className.split(" ").filter(Boolean).join(".");
-          selector += `.${classes}`;
-        }
-        path.unshift(selector);
-        el = el.parentElement;
-      }
-      return path.join(" > ");
-    };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -41,32 +70,33 @@ export const useElementPicker = () => {
       setHoverClass(target.className || "-");
     };
 
-    const handleClick = (
-      e: MouseEvent,
-      type?: "container" | "title" | "price" | "image",
-    ) => {
-      e.preventDefault();
-      e.stopPropagation();
+    const handleClick = (e: MouseEvent) => {
+  e.preventDefault();
+  e.stopPropagation();
 
-      const target = e.target as HTMLElement;
-      const selector = getSelector(target);
+  const target = e.target as HTMLElement;
 
-      setSelected({
-        tag: target.tagName.toLowerCase(),
-        className: target.className || "-",
-        id: target.id || "-",
-        selector,
-      });
+  const selector = getSelector(target);
+  const container = findContainer(target); // 🔥
 
-      // Если указан тип (title, price, image), сохраняем в parsingConfig
-      if (type) {
-        setParsingConfig((prev) => ({ ...prev, [type]: selector }));
-      }
+  setSelected({
+    tag: target.tagName.toLowerCase(),
+    className: target.className || "-",
+    id: target.id || "-",
+    selector,
+  });
 
-      setIsActive(false);
-      setRect(null);
-      setHoverClass("");
-    };
+  // 👇 сохраняем сразу container + выбранный элемент
+  setParsingConfig((prev) => ({
+    ...prev,
+    container: prev.container || container,
+    title: selector, // временно можно так
+  }));
+
+  setIsActive(false);
+  setRect(null);
+  setHoverClass("");
+};
 
     document.body.style.cursor = "crosshair";
 
@@ -80,13 +110,13 @@ export const useElementPicker = () => {
     };
   }, [isActive]);
 
-return {
-  isActive,
-  setIsActive,
-  rect,
-  hoverClass,
-  selected,
-  parsingConfig,
-  setParsingConfig, // чтобы можно было обновлять вручную из компонента
-};
+  return {
+    isActive,
+    setIsActive,
+    rect,
+    hoverClass,
+    selected,
+    parsingConfig,
+    setParsingConfig, // чтобы можно было обновлять вручную из компонента
+  };
 };
